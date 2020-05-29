@@ -64,7 +64,7 @@ def calc_dist(left, right):
 
 def calc_dist_perfect(left):
     tot = 0.0
-    perfect = 1.0/len(left.keys())
+    perfect = 6.0/len(left.keys())
     for key in left.keys():
         tot += (left[key] - perfect)**2
     return math.sqrt(tot)
