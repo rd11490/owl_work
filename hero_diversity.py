@@ -5,7 +5,7 @@ import math
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
-frame = pd.read_csv('data/phs_2020_1.csv')
+frame = pd.read_csv('player_data/phs_2020_1.csv')
 
 
 play_time = frame[(frame['stat_name'] == 'Time Played') & (frame['hero_name'] != 'All Heroes')]

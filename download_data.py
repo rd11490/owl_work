@@ -9,7 +9,8 @@ resp_text = requests.get("https://overwatchleague.com/en-us/statslab").text
 links = re.findall( r'(https://assets.*?.zip)', resp_text)
 
 zip_dir_name = 'zips'
-data_dir_name = 'data'
+map_data_dir_name = 'map_data'
+player_data_dir_name = 'player_data'
 
 
 # Create a zips directory if it doesn't exist
@@ -17,8 +18,8 @@ if not os.path.isdir(zip_dir_name):
     os.mkdir(zip_dir_name)
 
 # Create a data directory if it doesn't exist
-if not os.path.isdir(data_dir_name):
-    os.mkdir(data_dir_name)
+if not os.path.isdir(map_data_dir_name):
+    os.mkdir(map_data_dir_name)
 
 
 for l in links:
@@ -37,6 +38,9 @@ zips = os.listdir(zip_dir_name)
 
 for z in zips:
     with zipfile.ZipFile('{}/{}'.format(zip_dir_name, z), 'r') as zip_ref:
-        zip_ref.extractall(data_dir_name)
+        if 'map' in z:
+            zip_ref.extractall(map_data_dir_name)
+        else:
+            zip_ref.extractall(player_data_dir_name)
 
 

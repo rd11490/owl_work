@@ -1,0 +1,22 @@
+league_color_hex = {
+    'Atlanta Reign': '#910F1B',
+    'Boston Uprising': '#174B97',
+    'Chengdu Hunters': '#FFA000',
+    'Dallas Fuel': '#032340',
+    'Florida Mayhem': '#CF4691',
+    'Guangzhou Charge': '#122C42',
+    'Hangzhou Spark': '#FB7299',
+    'Houston Outlaws': '#97D700',
+    'London Spitfire': '#59CBE8',
+    'Los Angeles Gladiators': '#3C1053',
+    'Los Angeles Valiant': '#1888C8',
+    'New York Excelsior': '#0F57EA',
+    'Paris Eternal': '#303D56',
+    'Philadelphia Fusion': '#F99E29',
+    'San Francisco Shock': '#',
+    'Seoul Dynasty': '#AA8A00',
+    'Shanghai Dragons': '#D22630',
+    'Toronto Defiant': '#C10021',
+    'Vancouver Titans': '#2FB228',
+    'Washington Justice': '#990034'
+}

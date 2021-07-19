@@ -1,61 +1,20 @@
 import pandas as pd
 import datetime
 
+from constants import Maps
+from utils import calc_match_date, calc_season
+
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
-frame = pd.read_csv('data/match_map_stats.csv')
+frame = pd.read_csv('map_data/match_map_stats.csv')
 
 teams = frame['attacker'].unique()
 maps = frame['map_name'].unique()
 
 
-class MapType:
-    Assault = 'Assault'
-    Control = 'Control'
-    Escort = 'Escort'
-    Hybrid = 'Hybrid'
-
-    map_types = {
-        'Hanamura': Assault,
-        'Horizon Lunar Colony': Assault,
-        'Paris': Assault,
-        'Temple of Anubis': Assault,
-        'Volskaya Industries': Assault,
-
-        'Busan': Control,
-        'Ilios': Control,
-        'Lijiang Tower': Control,
-        'Nepal': Control,
-        'Oasis': Control,
-
-        'Dorado': Escort,
-        'Havana': Escort,
-        'Junkertown': Escort,
-        'Rialto': Escort,
-        'Route 66': Escort,
-        'Watchpoint: Gibraltar': Escort,
-
-        'Numbani': Hybrid,
-        'Eichenwalde': Hybrid,
-        "King's Row": Hybrid,
-        'Hollywood': Hybrid,
-        'Blizzard World': Hybrid,
-    }
-
-
 def calc_map_type(map_name):
-    return MapType.map_types[map_name]
-
-
-def calc_match_date(dt):
-    parsed = datetime.datetime.strptime(dt, "%m/%d/%Y %H:%M")
-    return parsed.date().strftime("%Y/%m/%d")
-
-
-def calc_season(dt):
-    parsed = datetime.datetime.strptime(dt, "%m/%d/%Y %H:%M")
-    return parsed.date().strftime("%Y")
+    return Maps.map_types[map_name]
 
 
 def calculate_control_winner(row):
@@ -76,10 +35,10 @@ frame['map_type'] = frame['map_name'].apply(calc_map_type)
 frame['match_date'] = frame['round_end_time'].apply(calc_match_date)
 frame['season'] = frame['round_end_time'].apply(calc_season)
 
-escort_maps = frame[frame['map_type'] == MapType.Escort]
-assault_maps = frame[frame['map_type'] == MapType.Assault]
-control_maps = frame[frame['map_type'] == MapType.Control]
-hybrid_maps = frame[frame['map_type'] == MapType.Hybrid]
+escort_maps = frame[frame['map_type'] == Maps.Escort]
+assault_maps = frame[frame['map_type'] == Maps.Assault]
+control_maps = frame[frame['map_type'] == Maps.Control]
+hybrid_maps = frame[frame['map_type'] == Maps.Hybrid]
 
 escort_maps = escort_maps[
     ['map_winner', 'map_loser', 'team_one_name', 'team_two_name', 'map_name', 'winning_team_final_map_score',

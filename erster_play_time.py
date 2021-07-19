@@ -28,7 +28,7 @@ def calc_match_week_and_year(dt):
 ## PART 1
 print('Erster Play Time - Mei')
 
-frame = pd.read_csv('data/phs_2020_1.csv')
+frame = pd.read_csv('player_data/phs_2020_1.csv')
 
 na_teams = ['Paris Eternal', 'Toronto Defiant',
  'Los Angeles Gladiators',  'Dallas Fuel',
@@ -41,6 +41,8 @@ mei['game_date'] = mei['start_time'].apply(calc_match_date)
 mei['game_week'] = mei['game_date'].apply(calc_match_week_and_year)
 
 atlanta_maps = mei[['esports_match_id', 'map_name', 'player_name', 'stat_name', 'stat_amount', 'hero_name', 'game_week']]
+
+print(atlanta_maps)
 
 total_min = atlanta_maps['stat_amount'].sum()
 
@@ -85,13 +87,10 @@ print('Did Atlanta NOT Play Mei when meta')
 
 frame2 = pd.read_csv('data/phs_2020_1.csv')
 
-time_played = frame2[(frame2['stat_name'] == 'Time Played') & (frame2['hero_name'] != 'All Heroes') & (frame2['team_name'].isin(na_teams))]
+time_played = frame2[(frame2['stat_name'] == 'Time Played') & (frame2['hero_name'] != 'All Heroes')]
 
 time_played['game_date'] = time_played['start_time'].apply(calc_match_date)
 time_played['game_week'] = time_played['game_date'].apply(calc_match_week_and_year)
-
-# print(time_played[['game_date','game_week']].drop_duplicates())
-
 
 def play_time_per_match(group):
     total_time = group['stat_amount'].sum()
@@ -156,7 +155,7 @@ print('Ersters Hero Pool last Season')
 
 frames = []
 for i in [1,2,3,4]:
-    frame = pd.read_csv('data/phs_2019_stage_{}.csv'.format(i))
+    frame = pd.read_csv('player_data/phs_2019_stage_{}.csv'.format(i))
     frames.append(frame)
 
 
