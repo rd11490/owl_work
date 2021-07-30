@@ -228,4 +228,4 @@ hybrid_maps_score = hybrid_maps.groupby(by=['match_id', 'game_number']).apply(ca
 
 scored_maps = pd.concat([control_maps_score, hybrid_maps_score, escort_maps_score, assault_scores])
 
-scored_maps.to_csv('results/scored_maps.csv', index=False)
+scored_maps.to_csv('results/scored_maps_bk.csv', index=False)
