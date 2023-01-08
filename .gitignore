@@ -130,3 +130,15 @@ dmypy.json
 
 .DS_Store
 .idea/
+
+map_data/*
+players_data/*
+player_data/*
+zips/*
+
+results/*
+plots/*
+standing_plots/*
+*.csv
+*.png
+*.zip

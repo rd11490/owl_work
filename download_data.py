@@ -23,16 +23,17 @@ if not os.path.isdir(map_data_dir_name):
 
 
 for l in links:
-    # Pull the zip name from the href
-    zip_name = l.split('/')[-1]
+    if '.zip' in l:
+        # Pull the zip name from the href
+        zip_name = l.split('/')[-1]
 
-    # Make a request to get the zip file
-    r = requests.get(l, stream=True)
+        # Make a request to get the zip file
+        r = requests.get(l, stream=True)
 
-    # save the zip file into the zips folder
-    with open('{}/{}'.format(zip_dir_name, zip_name), 'wb') as fd:
-        for chunk in r.iter_content(chunk_size=512):
-            fd.write(chunk)
+        # save the zip file into the zips folder
+        with open('{}/{}'.format(zip_dir_name, zip_name), 'wb') as fd:
+            for chunk in r.iter_content(chunk_size=512):
+                fd.write(chunk)
 
 zips = os.listdir(zip_dir_name)
 
